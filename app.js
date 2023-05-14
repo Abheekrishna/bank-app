@@ -19,6 +19,14 @@ const depositBtn = document.getElementById('deposit');
 const withdrawDiv = document.getElementById('withdraw');
 
 
+const hasAccount = () => {
+    if (accountCreated) {
+        return true
+    }
+    transactions.innerText = `You need to create an account before proceeding.`
+    return false;
+}
+
 const changeBalance = () => {
     let balance = Number(document.getElementById('balance').innerText);
     return balance;
@@ -53,13 +61,16 @@ const accountCreating = () => {
 }
 
 const accountDeleting = () => {
+    if (hasAccount()) {
     accountCreated = false;
     nameOfPerson.innerText = '';
     balanceDiv.innerText = '';
     transactions.innerText = 'Account deleted.'
+    }
 }
 
 const amountDeposit = () => {
+    if (hasAccount()){
     const amount = prompt('How much you want to deposit?');
     if (isNaN(amount)) {
         transactions.innerText = `Invalid amount.`;
@@ -68,8 +79,10 @@ const amountDeposit = () => {
     transactions.innerText = `Deposited: ₹${amount}`;
     }
 }
+}
 
 const amountWithraw = () => {
+    if (hasAccount()) {
     const amount = prompt('How much you want to withdraw?');
     if (isNaN(amount)) {
         transactions.innerText = `Invalid amount.`
@@ -81,27 +94,31 @@ const amountWithraw = () => {
     transactions.innerText = `Withdrawn: ₹${amount}`
     }
 }
-}
-
-
-
-const hasAccountCreated = () => {
-    if (accountCreated == true) {
-        deleteAccount.onclick = () => accountDeleting();
-        withdrawDiv.onclick = () => amountWithraw();
-        depositBtn.onclick = () => amountDeposit();
-    } else if (accountCreated == false) {
-        deleteAccount.onclick = () => {
-            transactions.innerText = 'You need to create one to delete.';
-        };
-        withdrawDiv.onclick = () => {
-            transactions.innerText = 'You need to create an account for proceeding.';
-        };
-        depositBtn.onclick = () => {
-            transactions.innerText = 'You need to create an account for proceeding.';
-        };
     }
 }
 
-hasAccountCreated();
+
+
+// const hasAccountCreated = () => {
+//     if (accountCreated == true) {
+//         deleteAccount.onclick = () => accountDeleting();
+//         withdrawDiv.onclick = () => amountWithraw();
+//         depositBtn.onclick = () => amountDeposit();
+//     } else if (accountCreated == false) {
+//         deleteAccount.onclick = () => {
+//             transactions.innerText = 'You need to create one to delete.';
+//         };
+//         withdrawDiv.onclick = () => {
+//             transactions.innerText = 'You need to create an account for proceeding.';
+//         };
+//         depositBtn.onclick = () => {
+//             transactions.innerText = 'You need to create an account for proceeding.';
+//         };
+//     }
+// }
+
+// hasAccountCreated();
 createAccount.onclick = () => accountCreating();
+deleteAccount.onclick = () => accountDeleting();
+withdrawDiv.onclick = () => amountWithraw();
+depositBtn.onclick = () => amountDeposit();
