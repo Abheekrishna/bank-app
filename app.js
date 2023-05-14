@@ -19,6 +19,14 @@ const depositBtn = document.getElementById('deposit');
 const withdrawDiv = document.getElementById('withdraw');
 
 
+withdrawDiv.addEventListener("focus", function() {
+    withdrawDiv.setAttribute("type", "number");
+  });
+  
+  withdrawDiv.addEventListener("blur", function() {
+    withdrawDiv.setAttribute("type", "text");
+  });
+
 const hasAccount = () => {
     if (accountCreated) {
         return true
