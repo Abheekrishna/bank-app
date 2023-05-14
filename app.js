@@ -50,11 +50,10 @@ const accountCreating = () => {
         const username = prompt('What\'s your name?')
         if (username.trim().length === 0) {
             transactions.innerText = `You didn't enter your name.`;
-            return;
         } else {
         nameOfPerson.innerText = `${username}`;
         balanceDiv.innerText = `${balance}`
-        transactions.innerText = `New created successfully.`
+        transactions.innerText = `Account "${username}" created successfully.`
         accountCreated = true;
         }
     }
@@ -65,7 +64,7 @@ const accountDeleting = () => {
     accountCreated = false;
     nameOfPerson.innerText = '';
     balanceDiv.innerText = '';
-    transactions.innerText = 'Account deleted.'
+    transactions.innerText = 'Account deleted successfully.'
     }
 }
 
@@ -97,27 +96,6 @@ const amountWithraw = () => {
     }
 }
 
-
-
-// const hasAccountCreated = () => {
-//     if (accountCreated == true) {
-//         deleteAccount.onclick = () => accountDeleting();
-//         withdrawDiv.onclick = () => amountWithraw();
-//         depositBtn.onclick = () => amountDeposit();
-//     } else if (accountCreated == false) {
-//         deleteAccount.onclick = () => {
-//             transactions.innerText = 'You need to create one to delete.';
-//         };
-//         withdrawDiv.onclick = () => {
-//             transactions.innerText = 'You need to create an account for proceeding.';
-//         };
-//         depositBtn.onclick = () => {
-//             transactions.innerText = 'You need to create an account for proceeding.';
-//         };
-//     }
-// }
-
-// hasAccountCreated();
 createAccount.onclick = () => accountCreating();
 deleteAccount.onclick = () => accountDeleting();
 withdrawDiv.onclick = () => amountWithraw();
